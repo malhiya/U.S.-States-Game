@@ -3,12 +3,12 @@ import pandas
 screen = turtle.Screen()
 screen.title("U.S. States Game")
 # creating/adding a new shape
-image = "Users/malihya/PycharmProjects/Udemy/U.S. States Game/blank_states_img.gif"
+image = "blank_states_img.gif"
 screen.addshape(image)
 turtle.shape(image)
 
 
-data = pandas.read_csv("Users/malihya/PycharmProjects/Udemy/U.S. States Game/50_states.csv")
+data = pandas.read_csv("50_states.csv")
 states = data.state.to_list()
 guessed_states = []
 
@@ -18,10 +18,6 @@ while len(guessed_states) < 50:
                                     prompt="What's another state name?").title()
 
     if answer_state == "Exit":
-        # missing_states = []
-        # for state in states:
-        #     if state not in guessed_states:
-        #         missing_states.append(state)
         # List comprehension
         missing_states = [state for state in states if state not in guessed_states]
         new_data = pandas.DataFrame(missing_states)
@@ -37,15 +33,6 @@ while len(guessed_states) < 50:
         t.goto(int(state_data.x), int(state_data.y))
         t.write(state_data.state.item()) # or just use answer_state
 
-# states to .csv
-
-
-
-# #stack overflow
-# def get_mouse_click_coor(x, y):
-#     print(x, y)
-#
-# turtle.onscreenclick(get_mouse_click_coor)
 
 turtle.mainloop() # keeps screen open replacess exitonclick
 
